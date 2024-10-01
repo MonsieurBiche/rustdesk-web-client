@@ -42,7 +42,7 @@ Any branch not described below is probably about something else "Work in Progres
 - Auto connect/login using query parameters, based on [JelleBunning's fork](https://github.com/JelleBuning/rustdesk/tree/fix_build).
   > Allows using URLs like https://your.host.com/#/connect?id=123456789&pw=your-password
 
-- Enforce `'adapative` scale (`ViewStyle`) when starting a remote connection, for a better behaviour.
+- Enforce `adaptive` scale (`ViewStyle`) when starting a remote connection, for a better behaviour.
 - Small codes fixes on the `mobile` side of the code (`RemotePage` especially), to remove errors in browser's console.
 
 #### TODO
