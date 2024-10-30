@@ -96,7 +96,8 @@ RUN vcpkg install libvpx libyuv opus aom
 
 ## Install Flutter
 ARG FLUTTER_SDK=/usr/local/flutter
-ARG FLUTTER_VERSION=3.16.5
+#ARG FLUTTER_VERSION=3.16.5
+ARG FLUTTER_VERSION=3.22.1
 RUN git clone https://github.com/flutter/flutter.git $FLUTTER_SDK
 RUN cd $FLUTTER_SDK && git fetch && git checkout $FLUTTER_VERSION
 ENV PATH="$FLUTTER_SDK/bin:$FLUTTER_SDK/bin/cache/dart-sdk/bin:${PATH}"
@@ -114,8 +115,15 @@ WORKDIR $APP
 ## ===== Web JS
 WORKDIR $APP/flutter/web/js
 
+# files are now split into v1 and v2, v2 not public, need to copy to web folder to have correct pathes in scripts
+RUN cp -R ../v1/* ../
+
 # Add NodeSource PPA to install a newer version of Node.js
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+
+# pin nodejs repo
+RUN printf 'Package: nodejs\n Pin: origin deb.nodesource.com\nPin-Priority: 600' > /etc/apt/preferences.d/nodesource
+
 RUN apt-get install -y nodejs
 
 RUN npm install -g npm@9.8.1

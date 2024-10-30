@@ -181,7 +181,7 @@ class PassArgumentsScreen extends StatelessWidget {
 
   PassArgumentsScreen(Map<String, String> queryParameters){
     this.queryParameters = queryParameters;
-    connectionPage = ConnectionPage(key: _connKey);
+    connectionPage = ConnectionPage(key: _connKey, appBarActions: []);
   }
 
   @override
